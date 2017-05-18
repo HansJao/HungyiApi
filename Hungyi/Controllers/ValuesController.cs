@@ -8,6 +8,7 @@ using Hungyi.Core;
 using Hungyi.DataAccess;
 using Hungyi.DataAccess.User;
 using Hungyi.DataAccess.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Hungyi.WebApi.Controllers
 {
@@ -23,6 +24,7 @@ namespace Hungyi.WebApi.Controllers
         [HttpGet]
         public IEnumerable<UserEntity> Get()
         {
+            HttpContext.Session.SetString("Test", "Ben Rules!");
             return userDao.GetAllUser();
         }
 
@@ -30,6 +32,7 @@ namespace Hungyi.WebApi.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
+           var x = HttpContext.Session.GetString("Test");
             return "value";
         }
 

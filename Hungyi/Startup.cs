@@ -30,6 +30,8 @@ namespace Hungyi.WebApi
             // Add framework services.
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddMvc();
+            services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +39,7 @@ namespace Hungyi.WebApi
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+            app.UseSession();
             app.UseMvc();
         }
     }
