@@ -6,22 +6,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Hungyi.Core;
 using Hungyi.DataAccess;
+using Hungyi.DataAccess.User;
+using Hungyi.DataAccess.Models;
 
 namespace Hungyi.WebApi.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        private readonly DapperTest dapperTest;
+        private readonly UserDao userDao;
         public ValuesController(IConfiguration configuration)
         {
-            dapperTest = new DapperTest(configuration.GetValue<string>("DBInfo:ConnectionString"));
+            userDao = new UserDao(configuration.GetValue<string>("DBInfo:ConnectionString"));
         }
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<UserEntity> Get()
         {
-            return new string[] { "value1", "value2" };
+            return userDao.GetAllUser();
         }
 
         // GET api/values/5

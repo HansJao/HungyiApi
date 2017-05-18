@@ -33,5 +33,19 @@ namespace Hungyi.Test.DataAccess.User
             Assert.AreEqual(expected, actual);
 
         }
+
+        [TestMethod]
+        public void GetUserTest()
+        {
+            //Arrange
+            UserDao userDao = new UserDao("Data Source=hansjao\\hansdb;Initial Catalog=HY;User ID=sa;Password=yuiop7410;");
+            
+            //Act
+            var actual = userDao.GetAllUser();
+            var expected = 1;
+            //Assert
+            Assert.AreEqual(expected, actual);
+
+        }
     }
 }

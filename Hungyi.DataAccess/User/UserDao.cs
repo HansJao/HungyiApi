@@ -24,6 +24,28 @@ namespace Hungyi.DataAccess.User
             }
         }
 
+        /// <summary>
+        /// Gets the user.
+        /// </summary>
+        /// <returns>回傳所有UserData</returns>
+        public IEnumerable<UserEntity> GetAllUser()
+        {
+            IEnumerable<UserEntity> userEntity;
+            using (IDbConnection dbCnnection = Connection)
+            {
+                dbCnnection.Open();
+                userEntity = dbCnnection.Query<UserEntity>(@"SELECT * FROM [dbo].[User]");
+            }
+            return userEntity;
+        }
+
+        /// <summary>
+        /// Inserts the user.
+        /// </summary>
+        /// <param name="userEntity">The user entity.</param>
+        /// <returns>
+        /// 回傳成功筆數
+        /// </returns>
         public int InsertUser(UserEntity userEntity)
         {
             var result = 0;
