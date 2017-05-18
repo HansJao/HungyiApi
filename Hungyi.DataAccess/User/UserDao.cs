@@ -73,5 +73,30 @@ namespace Hungyi.DataAccess.User
             }
             return result;
         }
+
+        /// <summary>
+        /// 依據UserID更新User
+        /// </summary>
+        /// <param name="userEntity">The user entity.</param>
+        /// <returns>
+        /// 回傳成功筆數
+        /// </returns>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public int UpdateUserByID(UserEntity userEntity)
+        {
+            var result = 0;
+            using (IDbConnection dbCnnection = Connection)
+            {
+                dbCnnection.Open();
+                result = dbCnnection.Execute(@"UPDATE [dbo].[User]
+                                               SET UserName = @UserName,                                              
+                                               UserPassword = @UserPassword,
+                                               UserEmail = @UserEmail,
+                                               UserCellPhone = @UserCellPhone,                                              
+                                               ModifyDate = @ModifyDate
+                                               WHERE UserID = @UserID", userEntity);
+            }
+            return result;
+        }
     }
 }
