@@ -28,5 +28,12 @@ namespace Hungyi.DataAccess.User
         /// 回傳成功筆數
         /// </returns>
         int UpdateUserByID(UserEntity userEntity);
+
+        /// <summary>
+        /// Gets the user by account.
+        /// </summary>
+        /// <param name="account">The account.</param>
+        /// <returns>回傳特定使用者</returns>
+        UserEntity GetUserByAccount(string account);
     }
 }

@@ -39,6 +39,19 @@ namespace Hungyi.DataAccess.User
             return userEntity;
         }
 
+        public UserEntity GetUserByAccount(string account)
+        {
+            UserEntity userEntity;
+            using (IDbConnection dbCnnection = Connection)
+            {
+                dbCnnection.Open();
+                var dynamicParams = new DynamicParameters();
+                dynamicParams.Add("@UserAccount", account);
+                userEntity = dbCnnection.QueryFirst<UserEntity>(@"SELECT * FROM [dbo].[User] WHERE UserAccount = @UserAccount", dynamicParams);
+            }
+            return userEntity;
+        }
+
         /// <summary>
         /// Inserts the user.
         /// </summary>
