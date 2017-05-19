@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Hungyi.DataAccess.Models;
 using Hungyi.DataAccess.User;
+using Microsoft.Extensions.Configuration;
 
 namespace Hungyi.Core.User
 {
-    class UserModule : IUserModule
+    public class UserModule : IUserModule
     {
         private IUserDao _userDao;
         public UserModule(IUserDao userDao)
