@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Hungyi.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class ValuesController : Controller
     {
         private readonly UserDao userDao;
@@ -51,6 +51,12 @@ namespace Hungyi.WebApi.Controllers
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
+        {
+        }
+
+        // DELETE api/values/5
+        [HttpPatch("{id}")]
+        public void Update(int id)
         {
         }
     }
