@@ -9,7 +9,7 @@ using System.Text;
 namespace Hungyi.Test.DataAccess.User
 {
     [TestClass]
-    public class TetileDaoTest
+    public class TextileDaoTest
     {
         private string _dbConfig;
         [TestInitialize]
@@ -18,7 +18,7 @@ namespace Hungyi.Test.DataAccess.User
             _dbConfig = "Data Source=hansjao\\hansdb;Initial Catalog=HY;User ID=sa;Password=yuiop7410;";
         }
         [TestMethod]
-        public void InsertUserTest()
+        public void InsertTextileTest()
         {
             //Arrange
             TextileDao textileDao = new TextileDao(_dbConfig);
@@ -50,7 +50,7 @@ namespace Hungyi.Test.DataAccess.User
         }
 
         [TestMethod]
-        public void GetUserTest()
+        public void GetTetileTest()
         {
             //Arrange
             TextileDao textileDao = new TextileDao(_dbConfig);
@@ -63,25 +63,35 @@ namespace Hungyi.Test.DataAccess.User
         }
 
         [TestMethod]
-        public void UpdateUserTest()
+        public void UpdateSoldTextileTest()
         {
+
             //Arrange
-            UserDao userDao = new UserDao(_dbConfig);
-            UserEntity userEntity = new UserEntity
+            TextileDao textileDao = new TextileDao(_dbConfig);
+            List<TextileEntity> textileEntity = new List<TextileEntity>
             {
-                UserID = 1,
-                UserName = "Hans",
-                Gender = 1,
-                UserAccount = "hans.jao",
-                UserPassword = "1234",
-                UserEmail = "vigor.jao@eitc.com.tw",
-                UserCellphone = "0975669651",
-                CreateDate = DateTime.Now,
-                ModifyDate = DateTime.Now
+               new TextileEntity
+               {
+                   TextileID = 2,
+                   IsSold=true,
+                   Price =200,
+                   Buyer=123,
+                   Remark ="",
+                   ModifyDate = DateTime.Now
+               },
+               new TextileEntity
+               {
+                   TextileID = 4,
+                   IsSold=false,
+                   Price =300,
+                   Buyer=641,
+                   Remark ="Success",
+                   ModifyDate = DateTime.Now
+               }
             };
             //Act
-            var actual = userDao.UpdateUserByID(userEntity);
-            var expected = 1;
+            var actual = textileDao.UpdateSoldTextile(textileEntity);
+            var expected = 2;
             //Assert
             Assert.AreEqual(expected, actual);
 

@@ -80,5 +80,24 @@ namespace Hungyi.DataAccess.Textile
             }
             return result;
         }
+
+        public int UpdateSoldTextile(IEnumerable<TextileEntity> TextileData)
+        {
+            var result = 0;
+            using (IDbConnection dbCnnection = Connection)
+            {
+                dbCnnection.Open();
+                result = dbCnnection.Execute(@"UPDATE [dbo].[Textile]
+                                               SET                             
+                                               [IsSold] = @IsSold,
+                                               [Price] = @Price,
+                                               [Buyer] = @Buyer,                                                  
+                                               [Remark] = @Remark,
+                                               [ModifyDate] = @ModifyDate
+                                               WHERE 
+                                               TextileID=@TextileID", TextileData);
+            }
+            return result;
+        }
     }
 }
