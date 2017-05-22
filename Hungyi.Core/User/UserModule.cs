@@ -18,13 +18,17 @@ namespace Hungyi.Core.User
         /// Users the login.
         /// </summary>
         /// <param name="account">The account.</param>
+        /// <param name="password">The password.</param>
         /// <returns>
         /// 回傳使用者資訊
         /// </returns>
-        public UserEntity UserLogin(string account)
+        public UserEntity UserLogin(string account,string password)
         {
             var result = _userDao.GetUserByAccount(account);
+            if (result != null && result.UserPassword == password)
             return result;
+
+            return null;
         }
     }
 }

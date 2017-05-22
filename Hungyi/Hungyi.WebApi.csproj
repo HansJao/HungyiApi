@@ -5,6 +5,10 @@
     <PackageTargetFallback>portable-net45+win8</PackageTargetFallback>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>

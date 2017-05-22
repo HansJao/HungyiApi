@@ -20,10 +20,14 @@ namespace Hungyi.WebApi.Controllers
         {
             _userModule = new UserModule(new UserDao(configuration.GetValue<string>("DBInfo:ConnectionString")));
         }
-        [HttpGet("{account}")]
-        public UserEntity Info(string account)
+        [HttpGet]
+        public UserEntity Info()
         {
-            var result = _userModule.UserLogin(account);
+            var authorization = HttpContext.Request.Headers["Authorization"];
+            var date = HttpContext.Request.Headers["Datetime"];
+            var account = HttpContext.Request.Headers["Account"];
+            var password = HttpContext.Request.Headers["Password"];
+            var result = _userModule.UserLogin(account, password);
             return result;
         }
     }

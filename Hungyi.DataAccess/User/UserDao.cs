@@ -47,7 +47,7 @@ namespace Hungyi.DataAccess.User
                 dbCnnection.Open();
                 var dynamicParams = new DynamicParameters();
                 dynamicParams.Add("@UserAccount", account);
-                userEntity = dbCnnection.QueryFirst<UserEntity>(@"SELECT * FROM [dbo].[User] WHERE UserAccount = @UserAccount", dynamicParams);
+                userEntity = dbCnnection.QuerySingleOrDefault<UserEntity>(@"SELECT * FROM [dbo].[User] WHERE UserAccount = @UserAccount", dynamicParams);
             }
             return userEntity;
         }
