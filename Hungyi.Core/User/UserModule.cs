@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Hungyi.DataAccess.Models;
 using Hungyi.DataAccess.User;
 using Microsoft.Extensions.Configuration;
+using Hungyi.DataClass.User;
 
 namespace Hungyi.Core.User
 {

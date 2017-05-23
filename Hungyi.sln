@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hungyi.DataAccess", "Hungyi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hungyi.Test", "Hungyi.Test\Hungyi.Test.csproj", "{392455C4-9282-4937-9154-CB02C50EE3F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hungyi.DataClass", "DataClass\Hungyi.DataClass.csproj", "{D2DD4892-17C6-43A3-84E8-F87F69BF401B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{392455C4-9282-4937-9154-CB02C50EE3F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{392455C4-9282-4937-9154-CB02C50EE3F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{392455C4-9282-4937-9154-CB02C50EE3F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2DD4892-17C6-43A3-84E8-F87F69BF401B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2DD4892-17C6-43A3-84E8-F87F69BF401B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2DD4892-17C6-43A3-84E8-F87F69BF401B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2DD4892-17C6-43A3-84E8-F87F69BF401B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

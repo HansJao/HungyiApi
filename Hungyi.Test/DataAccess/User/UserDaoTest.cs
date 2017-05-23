@@ -1,5 +1,5 @@
-﻿using Hungyi.DataAccess.Models;
-using Hungyi.DataAccess.User;
+﻿using Hungyi.DataAccess.User;
+using Hungyi.DataClass.User;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

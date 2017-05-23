@@ -12,4 +12,8 @@
     <Folder Include="Base\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DataClass\Hungyi.DataClass.csproj" />
+  </ItemGroup>
+
 </Project>

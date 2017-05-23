@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hungyi.DataAccess.Models
+namespace Hungyi.DataClass.Textile
 {
     public class TextileEntity
     {

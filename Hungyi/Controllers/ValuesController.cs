@@ -7,8 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Hungyi.Core;
 using Hungyi.DataAccess;
 using Hungyi.DataAccess.User;
-using Hungyi.DataAccess.Models;
 using Microsoft.AspNetCore.Http;
+using Hungyi.DataClass.User;
 
 namespace Hungyi.WebApi.Controllers
 {

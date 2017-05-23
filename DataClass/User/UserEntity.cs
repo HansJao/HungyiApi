@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hungyi.DataAccess.Models
+namespace Hungyi.DataClass.User
 {
     public class UserEntity
     {
@@ -12,9 +12,8 @@ namespace Hungyi.DataAccess.Models
         public string UserAccount { get; set; }
         public string UserPassword { get; set; }
         public string UserEmail { get; set; }
-        public string UserCellphone{ get; set; }
+        public string UserCellphone { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime ModifyDate { get; set; }
-
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using Hungyi.DataAccess.Models;
+using Hungyi.DataClass.Textile;
 using System;
 using System.Collections.Generic;
 using System.Data;

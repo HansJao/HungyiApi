@@ -10,6 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Properties\PublishProfiles\CustomProfile.pubxml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
@@ -29,8 +34,8 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataClass\Hungyi.DataClass.csproj" />
     <ProjectReference Include="..\Hungyi.Core\Hungyi.Core.csproj" />
-    <ProjectReference Include="..\Hungyi.DataAccess\Hungyi.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

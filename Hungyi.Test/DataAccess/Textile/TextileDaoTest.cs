@@ -1,6 +1,6 @@
-﻿using Hungyi.DataAccess.Models;
-using Hungyi.DataAccess.Textile;
+﻿using Hungyi.DataAccess.Textile;
 using Hungyi.DataAccess.User;
+using Hungyi.DataClass.Textile;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

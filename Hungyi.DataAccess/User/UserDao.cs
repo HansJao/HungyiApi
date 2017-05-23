@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Hungyi.DataAccess.Models;
 using System.Data;
 using System.Data.SqlClient;
 using Dapper;
+using Hungyi.DataClass.User;
 
 namespace Hungyi.DataAccess.User
 {
