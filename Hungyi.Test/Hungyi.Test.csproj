@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Hungyi.Core\Hungyi.Core.csproj" />
     <ProjectReference Include="..\Hungyi.DataAccess\Hungyi.DataAccess.csproj" />
   </ItemGroup>
 

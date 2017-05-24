@@ -3,19 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Hungyi.DataClass.Textile;
+using Hungyi.Core.Textile;
+using Microsoft.Extensions.Configuration;
+using Hungyi.DataAccess.Textile;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Hungyi.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class TextileController : Controller
     {
+
+        private readonly ITextileModule _textileModule;
+        public TextileController(IConfiguration configuration)
+        {
+            _textileModule = new TextileModule(new TextileDao(configuration.GetValue<string>("DBInfo:ConnectionString")));
+        }
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<AllTextile> Get()
         {
-            return new string[] { "value1", "value2" };
+            var allTextile = new List<AllTextile>()
+            {
+                new AllTextile
+                {
+                    TextileName="CVC",
+                    TextileInfo = new List<TextileInfo>
+                    {
+                        new TextileInfo{TextileColor = "black",Amount = 1},
+                        new TextileInfo{TextileColor = "red",Amount = 12},
+                        new TextileInfo{TextileColor = "green",Amount = 54},
+                        new TextileInfo{TextileColor = "yellow",Amount = 33},
+                    }
+                }
+            };
+            return allTextile;
         }
 
         // GET api/values/5
