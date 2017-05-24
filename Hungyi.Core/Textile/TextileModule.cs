@@ -4,19 +4,38 @@ using System.Text;
 using Hungyi.DataClass.Textile;
 using Hungyi.DataAccess.Textile;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
 
 namespace Hungyi.Core.Textile
 {
     public class TextileModule : ITextileModule
     {
         private ITextileDao _textileDao;
-        public TextileModule(ITextileDao textileDao)
+        private IConfiguration _configuration;
+        public TextileModule(IConfiguration configuration)
         {
-            this._textileDao = textileDao;
+            this._configuration = configuration;
+            //this._textileDao = new TextileDao(configuration.GetValue<string>("DBInfo:ConnectionString"));
+        }
+
+        protected ITextileDao TextileDao
+        {
+            get
+            {
+                if(this._textileDao == null)
+                {
+                    this._textileDao = new TextileDao(_configuration.GetValue<string>("DBInfo:ConnectionString"));
+                }
+                return this._textileDao;
+            }
+            set
+            {
+                this._textileDao = value;
+            }
         }
         public IEnumerable<AllTextile> GetAllTextileInfo()
         {
-            var allTextile = _textileDao.GetAllTextile().GroupBy(a => a.TextileName);
+            var allTextile = TextileDao.GetAllTextile().GroupBy(a => a.TextileName);
 
             var result = new List<AllTextile>();
             foreach (var i in allTextile)
@@ -40,7 +59,7 @@ namespace Hungyi.Core.Textile
                 });
             }
 
-            throw new NotImplementedException();
+            return result;
         }
     }
 }

@@ -2,7 +2,9 @@
 using Hungyi.DataAccess.Textile;
 using Hungyi.DataAccess.User;
 using Hungyi.DataClass.Textile;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,8 +24,9 @@ namespace Hungyi.Test.Core.Textile
         public void GetTetileTest()
         {
             //Arrange
-            TextileDao textileDao = new TextileDao(_dbConfig);
-            TextileModule textileModule = new TextileModule(textileDao);
+            IConfiguration configuration = Substitute.For<IConfiguration>();
+            configuration.GetValue<string>("DBInfo:ConnectionString").Returns("Data Source=hansjao\\hansdb;Initial Catalog=HY;User ID=sa;Password=yuiop7410;");                  
+            TextileModule textileModule = new TextileModule(configuration);
 
             //Act
             var actual = textileModule.GetAllTextileInfo();
