@@ -41,6 +41,19 @@ namespace Hungyi.DataAccess.Textile
             return textileEntity;
         }
 
+        public IEnumerable<TextileEntity> GetTextileInfoByID(int ProductID)
+        {
+            IEnumerable<TextileEntity> textileEntity;
+            using (IDbConnection dbCnnection = Connection)
+            {
+                dbCnnection.Open();
+                var dynamicParams = new DynamicParameters();
+                dynamicParams.Add("@ProductID", ProductID);
+                textileEntity = dbCnnection.Query<TextileEntity>(@"SELECT * FROM [dbo].[Textile] WHERE ProductID = @ProductID", dynamicParams);
+            }
+            return textileEntity;
+        }
+
         public int InsertTextile(IEnumerable<TextileEntity> TextileData)
         {
             var result = 0;

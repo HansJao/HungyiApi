@@ -94,7 +94,20 @@ namespace Hungyi.Test.DataAccess.User
             var expected = 2;
             //Assert
             Assert.AreEqual(expected, actual);
-
         }
+
+        [TestMethod]
+        public void GetTextileInfoByIDTest()
+        {
+            //Arrange
+            TextileDao textileDao = new TextileDao(_dbConfig);
+            int productId = 1;
+            //Act
+            var actual = textileDao.GetTextileInfoByID(productId);
+            var expected = 1;
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        
     }
 }

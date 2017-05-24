@@ -43,6 +43,7 @@ namespace Hungyi.Core.Textile
                 result.Add(new AllTextile
                 {
                     TextileName = i.Key,
+                    ProductID = i.Select(a=>a.ProductID).FirstOrDefault(),
                     TextileInfo = i.GroupBy(d=>d.TextileColor).Select(a => new TextileInfo
                     {
                         TextileColor = a.Key,
@@ -60,6 +61,12 @@ namespace Hungyi.Core.Textile
             }
 
             return result;
+        }
+
+        public IEnumerable<TextileEntity> GetTextileInfoByID(int ProductID)
+        {
+            var textileByProductID = TextileDao.GetTextileInfoByID(ProductID);
+            return textileByProductID;
         }
     }
 }

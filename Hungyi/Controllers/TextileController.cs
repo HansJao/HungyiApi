@@ -44,9 +44,9 @@ namespace Hungyi.WebApi.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IEnumerable<TextileEntity> Get(int id)
         {
-            return "value";
+            return _textileModule.GetTextileInfoByID(id);
         }
 
         // POST api/values

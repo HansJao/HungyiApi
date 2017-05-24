@@ -7,6 +7,7 @@ namespace Hungyi.DataClass.Textile
     public class AllTextile
     {
         public string TextileName { get; set; }
+        public int ProductID { get; set; }
         public IEnumerable<TextileInfo> TextileInfo { get; set; }
     }
 
