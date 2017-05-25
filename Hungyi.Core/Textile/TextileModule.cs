@@ -5,6 +5,7 @@ using Hungyi.DataClass.Textile;
 using Hungyi.DataAccess.Textile;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
+using Hungyi.DataClass.Product;
 
 namespace Hungyi.Core.Textile
 {
@@ -22,7 +23,7 @@ namespace Hungyi.Core.Textile
         {
             get
             {
-                if(this._textileDao == null)
+                if (this._textileDao == null)
                 {
                     this._textileDao = new TextileDao(_configuration.GetValue<string>("DBInfo:ConnectionString"));
                 }
@@ -33,6 +34,13 @@ namespace Hungyi.Core.Textile
                 this._textileDao = value;
             }
         }
+
+        public IEnumerable<ProductEntity> GetAllProduct()
+        {
+            var result = TextileDao.GetAllProduct();
+            return result;
+        }
+
         public IEnumerable<AllTextile> GetAllTextileInfo()
         {
             var allTextile = TextileDao.GetAllTextile().GroupBy(a => a.TextileName);
@@ -43,8 +51,8 @@ namespace Hungyi.Core.Textile
                 result.Add(new AllTextile
                 {
                     TextileName = i.Key,
-                    ProductID = i.Select(a=>a.ProductID).FirstOrDefault(),
-                    TextileInfo = i.GroupBy(d=>d.TextileColor).Select(a => new TextileInfo
+                    ProductID = i.Select(a => a.ProductID).FirstOrDefault(),
+                    TextileInfo = i.GroupBy(d => d.TextileColor).Select(a => new TextileInfo
                     {
                         TextileColor = a.Key,
                         Amount = i.Count(b => b.TextileColor == a.Key)

@@ -1,4 +1,5 @@
-﻿using Hungyi.DataClass.Textile;
+﻿using Hungyi.DataClass.Product;
+using Hungyi.DataClass.Textile;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,5 +28,10 @@ namespace Hungyi.DataAccess.Textile
         int UpdateSoldTextile(IEnumerable<TextileEntity> TextileData);
 
         IEnumerable<TextileEntity> GetTextileInfoByID(int ProductID);
+        /// <summary>
+        /// Gets all product.
+        /// </summary>
+        /// <returns>回傳所有商品資料</returns>
+        IEnumerable<ProductEntity> GetAllProduct();
     }
 }

@@ -7,6 +7,7 @@ using Hungyi.DataClass.Textile;
 using Hungyi.Core.Textile;
 using Microsoft.Extensions.Configuration;
 using Hungyi.DataAccess.Textile;
+using Hungyi.DataClass.Product;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -47,6 +48,14 @@ namespace Hungyi.WebApi.Controllers
         public IEnumerable<TextileEntity> Get(int id)
         {
             return _textileModule.GetTextileInfoByID(id);
+        }
+
+        // GET: api/values
+        [Route("product")]
+        [HttpGet]
+        public IEnumerable<ProductEntity> GetProduct()
+        {
+            return _textileModule.GetAllProduct();
         }
 
         // POST api/values

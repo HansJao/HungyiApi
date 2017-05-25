@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using Hungyi.DataClass.Product;
 
 namespace Hungyi.DataAccess.Textile
 {
@@ -22,6 +23,23 @@ namespace Hungyi.DataAccess.Textile
             {
                 return new SqlConnection(_connectionString);
             }
+        }
+
+        /// <summary>
+        /// Gets all product.
+        /// </summary>
+        /// <returns>
+        /// 回傳所有商品資料
+        /// </returns>
+        public IEnumerable<ProductEntity> GetAllProduct()
+        {
+            IEnumerable<ProductEntity> productEntity;
+            using (IDbConnection dbCnnection = Connection)
+            {
+                dbCnnection.Open();
+                productEntity = dbCnnection.Query<ProductEntity>(@"SELECT * FROM [dbo].[Product]");
+            }
+            return productEntity;
         }
 
         /// <summary>
