@@ -6,6 +6,7 @@ using Hungyi.DataAccess.Textile;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Hungyi.DataClass.Product;
+using Hungyi.DataClass.Request.Textile;
 
 namespace Hungyi.Core.Textile
 {
@@ -35,12 +36,56 @@ namespace Hungyi.Core.Textile
             }
         }
 
+        /// <summary>
+        /// Adds the textile list.
+        /// </summary>
+        /// <param name="TextileList">The textile list.</param>
+        /// <returns>
+        /// 回傳是否成功
+        /// </returns>
+        public bool AddTextileList(IEnumerable<TextileAddInfo> TextileList)
+        {
+            var textileEntityList = new List<TextileEntity>();
+            foreach(var textile in TextileList)
+            {
+                var weightArray = textile.Weight.Split(',');
+                foreach (var weight in weightArray)
+                {
+                    textileEntityList.Add(new TextileEntity
+                    {
+                        ProductID = textile.ProductID,
+                        TextileName = textile.TextileName,
+                        TextileColor = textile.TextileColor,
+                        TextileSpecification = textile.TextileSpecification,
+                        Cost = textile.Cost,
+                        Weight = float.Parse(weight),
+                        Stored = textile.Stored,
+                        Remark = textile.Remark,
+                        CreateDate = DateTime.Now,
+                        ModifyDate = DateTime.Now,                        
+                    });
+                }
+            }
+            var succesCount = TextileDao.InsertTextile(textileEntityList);
+            return true;
+        }
+
+        /// <summary>
+        /// Gets all product.
+        /// </summary>
+        /// <returns>
+        /// 回傳所有商品資料
+        /// </returns>
         public IEnumerable<ProductEntity> GetAllProduct()
         {
             var result = TextileDao.GetAllProduct();
             return result;
         }
 
+        /// <summary>
+        /// Gets all textile information.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<AllTextile> GetAllTextileInfo()
         {
             var allTextile = TextileDao.GetAllTextile().GroupBy(a => a.TextileName);
@@ -71,6 +116,11 @@ namespace Hungyi.Core.Textile
             return result;
         }
 
+        /// <summary>
+        /// Gets the textile information by identifier.
+        /// </summary>
+        /// <param name="ProductID">The product identifier.</param>
+        /// <returns></returns>
         public IEnumerable<TextileEntity> GetTextileInfoByID(int ProductID)
         {
             var textileByProductID = TextileDao.GetTextileInfoByID(ProductID);

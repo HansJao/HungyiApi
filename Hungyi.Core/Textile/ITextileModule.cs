@@ -1,4 +1,5 @@
 ﻿using Hungyi.DataClass.Product;
+using Hungyi.DataClass.Request.Textile;
 using Hungyi.DataClass.Textile;
 using System;
 using System.Collections.Generic;
@@ -24,5 +25,12 @@ namespace Hungyi.Core.Textile
         /// </summary>
         /// <returns>回傳所有商品資料</returns>
         IEnumerable<ProductEntity> GetAllProduct();
+
+        /// <summary>
+        /// Adds the textile list.
+        /// </summary>
+        /// <param name="TextileList">The textile list.</param>
+        /// <returns>回傳是否成功</returns>
+        bool AddTextileList(IEnumerable<TextileAddInfo> TextileList);
     }
 }

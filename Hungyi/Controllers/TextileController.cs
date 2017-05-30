@@ -8,6 +8,7 @@ using Hungyi.Core.Textile;
 using Microsoft.Extensions.Configuration;
 using Hungyi.DataAccess.Textile;
 using Hungyi.DataClass.Product;
+using Hungyi.DataClass.Request.Textile;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -60,8 +61,9 @@ namespace Hungyi.WebApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public bool Post([FromBody]IEnumerable<TextileAddInfo> textileList)
         {
+            return _textileModule.AddTextileList(textileList);
         }
 
         // PUT api/values/5
