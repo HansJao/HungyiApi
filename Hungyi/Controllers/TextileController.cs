@@ -9,11 +9,13 @@ using Microsoft.Extensions.Configuration;
 using Hungyi.DataAccess.Textile;
 using Hungyi.DataClass.Product;
 using Hungyi.DataClass.Request.Textile;
+using Hungyi.WebApi.Filter;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Hungyi.WebApi.Controllers
 {
+    [AuthFilter]
     [Route("[controller]")]
     public class TextileController : Controller
     {

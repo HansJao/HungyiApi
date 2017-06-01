@@ -30,5 +30,11 @@ namespace Hungyi.WebApi.Controllers
             var result = _userModule.UserLogin(account, password);
             return result;
         }
+        [HttpPost]
+        public string UserLogin([FromBody]UserEntity userInfo)
+        {
+          
+            return "{\"token\":\"mytoken\"}";
+        }
     }
 }
