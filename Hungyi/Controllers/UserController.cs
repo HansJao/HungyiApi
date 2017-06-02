@@ -31,10 +31,10 @@ namespace Hungyi.WebApi.Controllers
             return result;
         }
         [HttpPost]
-        public string UserLogin([FromBody]UserEntity userInfo)
+        public UserEntity UserLogin([FromBody]UserEntity userInfo)
         {
-          
-            return "{\"token\":\"mytoken\"}";
+            var result = _userModule.UserLogin(userInfo.UserAccount, userInfo.UserPassword);
+            return result;
         }
     }
 }

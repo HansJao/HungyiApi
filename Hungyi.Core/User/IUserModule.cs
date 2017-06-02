@@ -16,5 +16,7 @@ namespace Hungyi.Core.User
         /// 回傳使用者資訊
         /// </returns>
         UserEntity UserLogin(string account,string password);
+
+        bool CheckToken(string account,string token);
     }
 }

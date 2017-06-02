@@ -15,5 +15,6 @@ namespace Hungyi.DataClass.User
         public string UserCellphone { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime ModifyDate { get; set; }
+        public string Token { get; set; }
     }
 }
