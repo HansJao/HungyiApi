@@ -108,6 +108,41 @@ namespace Hungyi.Test.DataAccess.User
             //Assert
             Assert.AreEqual(expected, actual);
         }
-        
+
+        [TestMethod]
+        public void UpdateTextileTest()
+        {
+            //Arrange
+            TextileDao textileDao = new TextileDao(_dbConfig);
+            List<TextileEntity> textileEntity = new List<TextileEntity>
+            {
+               new TextileEntity
+               {
+                   TextileID = 2,
+                   TextileColor = "yellow",
+                   TextileSpecification = "條紋",
+                   Cost = 100,
+                   Weight = 22.1f,
+                   Stored = "A",
+                   Remark =""
+               },
+               new TextileEntity
+               {
+                   TextileID = 3,
+                   TextileColor = "yellow",
+                   TextileSpecification = "條紋",
+                   Cost = 100,
+                   Weight = 20.7f,
+                   Stored = "A",
+                   Remark ="Success"
+               }
+            };
+            //Act
+            var actual = textileDao.UpdateTextile(textileEntity);
+            var expected = 2;
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }

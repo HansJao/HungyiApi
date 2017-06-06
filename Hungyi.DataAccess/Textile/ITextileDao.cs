@@ -27,6 +27,13 @@ namespace Hungyi.DataAccess.Textile
         /// <returns>回傳成功筆數</returns>
         int UpdateSoldTextile(IEnumerable<TextileEntity> TextileData);
 
+        /// <summary>
+        /// Updates the textile.
+        /// </summary>
+        /// <param name="TextileData">The textile data.</param>
+        /// <returns></returns>
+        int UpdateTextile(IEnumerable<TextileEntity> TextileData);
+
         IEnumerable<TextileEntity> GetTextileInfoByID(int ProductID);
         /// <summary>
         /// Gets all product.

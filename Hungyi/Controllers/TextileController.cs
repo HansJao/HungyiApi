@@ -69,9 +69,11 @@ namespace Hungyi.WebApi.Controllers
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPost]
+        [Route("UpdateTextile")]
+        public bool Post([FromBody]IEnumerable<TextileEntity> textileList)
         {
+            return _textileModule.UpdateTextile(textileList);
         }
 
         // DELETE api/values/5

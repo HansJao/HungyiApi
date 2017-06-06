@@ -32,5 +32,12 @@ namespace Hungyi.Core.Textile
         /// <param name="TextileList">The textile list.</param>
         /// <returns>回傳是否成功</returns>
         bool AddTextileList(IEnumerable<TextileAddInfo> TextileList);
+
+        /// <summary>
+        /// Updates the textile.
+        /// </summary>
+        /// <param name="TextileList">The textile list.</param>
+        /// <returns></returns>
+        bool UpdateTextile(IEnumerable<TextileEntity> TextileList);
     }
 }

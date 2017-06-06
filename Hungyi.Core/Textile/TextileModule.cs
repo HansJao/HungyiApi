@@ -46,7 +46,7 @@ namespace Hungyi.Core.Textile
         public bool AddTextileList(IEnumerable<TextileAddInfo> TextileList)
         {
             var textileEntityList = new List<TextileEntity>();
-            foreach(var textile in TextileList)
+            foreach (var textile in TextileList)
             {
                 var weightArray = textile.Weight.Split(',');
                 foreach (var weight in weightArray)
@@ -62,7 +62,7 @@ namespace Hungyi.Core.Textile
                         Stored = textile.Stored,
                         Remark = textile.Remark,
                         CreateDate = DateTime.Now,
-                        ModifyDate = DateTime.Now,                        
+                        ModifyDate = DateTime.Now,
                     });
                 }
             }
@@ -125,6 +125,12 @@ namespace Hungyi.Core.Textile
         {
             var textileByProductID = TextileDao.GetTextileInfoByID(ProductID);
             return textileByProductID;
+        }
+
+        public bool UpdateTextile(IEnumerable<TextileEntity> TextileList)
+        {
+            var successCount = TextileDao.UpdateTextile(TextileList);
+            return successCount == TextileList.Count();
         }
     }
 }
