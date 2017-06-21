@@ -59,14 +59,31 @@ namespace Hungyi.DataAccess.Textile
             return textileEntity;
         }
 
-        public IEnumerable<TextileEntity> GetTextileInfoByID(int ProductID)
+        public IEnumerable<TextileEntity> GetTextileByListProductID(IEnumerable<int> productID)
         {
             IEnumerable<TextileEntity> textileEntity;
             using (IDbConnection dbCnnection = Connection)
             {
                 dbCnnection.Open();
                 var dynamicParams = new DynamicParameters();
-                dynamicParams.Add("@ProductID", ProductID);
+                foreach (var id in productID)
+                {
+                    dynamicParams.Add("@ProductID", productID);
+                }
+                
+                textileEntity = dbCnnection.Query<TextileEntity>(@"SELECT * FROM [dbo].[Textile] WHERE ProductID IN @ProductID", dynamicParams);
+            }
+            return textileEntity;
+        }
+
+        public IEnumerable<TextileEntity> GetTextileInfoByID(int productID)
+        {
+            IEnumerable<TextileEntity> textileEntity;
+            using (IDbConnection dbCnnection = Connection)
+            {
+                dbCnnection.Open();
+                var dynamicParams = new DynamicParameters();
+                dynamicParams.Add("@ProductID", productID);
                 textileEntity = dbCnnection.Query<TextileEntity>(@"SELECT * FROM [dbo].[Textile] WHERE ProductID = @ProductID", dynamicParams);
             }
             return textileEntity;

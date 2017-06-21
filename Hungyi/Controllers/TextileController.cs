@@ -60,7 +60,16 @@ namespace Hungyi.WebApi.Controllers
         {
             return _textileModule.GetAllProduct();
         }
-
+        [Route("GetTextileByListProductID")]
+        [HttpPost]
+        public IEnumerable<TextileEntity> Post([FromBody]IEnumerable<int> productID)
+        {
+            if (productID == null || productID.Count() == 0)
+            {
+                return null;
+            }
+            return _textileModule.GetTextileByListProductID(productID);
+        }
         // POST api/values
         [HttpPost]
         public bool Post([FromBody]IEnumerable<TextileAddInfo> textileList)

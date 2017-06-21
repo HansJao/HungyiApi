@@ -40,5 +40,11 @@ namespace Hungyi.DataAccess.Textile
         /// </summary>
         /// <returns>回傳所有商品資料</returns>
         IEnumerable<ProductEntity> GetAllProduct();
+        /// <summary>
+        /// Gets the textile by list product identifier.
+        /// </summary>
+        /// <param name="productID">The product identifier.</param>
+        /// <returns></returns>
+        IEnumerable<TextileEntity> GetTextileByListProductID(IEnumerable<int> productID);
     }
 }

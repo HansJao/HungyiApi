@@ -116,6 +116,11 @@ namespace Hungyi.Core.Textile
             return result;
         }
 
+        public IEnumerable<TextileEntity> GetTextileByListProductID(IEnumerable<int> productID)
+        {
+            return TextileDao.GetTextileByListProductID(productID);
+        }
+
         /// <summary>
         /// Gets the textile information by identifier.
         /// </summary>

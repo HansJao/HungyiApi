@@ -39,5 +39,11 @@ namespace Hungyi.Core.Textile
         /// <param name="TextileList">The textile list.</param>
         /// <returns></returns>
         bool UpdateTextile(IEnumerable<TextileEntity> TextileList);
+        /// <summary>
+        /// Gets the textile by list identifier.
+        /// </summary>
+        /// <param name="textileID">The textile identifier.</param>
+        /// <returns></returns>
+        IEnumerable<TextileEntity> GetTextileByListProductID(IEnumerable<int> textileID);
     }
 }
