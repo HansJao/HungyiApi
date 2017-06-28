@@ -7,11 +7,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace Hungyi.Core.Product
 {
-    public class ProductModule : IProductModule
+    public class OrderModule : IProductModule
     {
         private IProductDao _productDao;
         private IConfiguration _configuration;
-        public ProductModule(IConfiguration configuration)
+        public OrderModule(IConfiguration configuration)
         {
             this._configuration = configuration;
         }

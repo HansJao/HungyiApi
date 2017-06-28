@@ -17,7 +17,7 @@ namespace Hungyi.WebApi.Controllers
         private readonly IProductModule _productModule;
         public ProductController(IConfiguration configuration)
         {
-            _productModule = new ProductModule(configuration);
+            _productModule = new OrderModule(configuration);
         }
         // GET: api/values
         [HttpGet]

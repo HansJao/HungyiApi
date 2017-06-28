@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using Hungyi.DataClass.Product;
+using System.Linq;
 
 namespace Hungyi.DataAccess.Textile
 {
@@ -70,7 +71,7 @@ namespace Hungyi.DataAccess.Textile
                 {
                     dynamicParams.Add("@ProductID", productID);
                 }
-                
+
                 textileEntity = dbCnnection.Query<TextileEntity>(@"SELECT * FROM [dbo].[Textile] WHERE ProductID IN @ProductID", dynamicParams);
             }
             return textileEntity;
@@ -134,16 +135,23 @@ namespace Hungyi.DataAccess.Textile
             var result = 0;
             using (IDbConnection dbCnnection = Connection)
             {
+                var data = TextileData.ToList().Select(s => new
+                {
+                    IsSold = true,
+                    Price = s.Price,
+                    Remark = s.Remark,
+                    ModifyDate = DateTime.Now,
+                    TextileID = s.TextileID
+                });
                 dbCnnection.Open();
                 result = dbCnnection.Execute(@"UPDATE [dbo].[Textile]
                                                SET                             
                                                [IsSold] = @IsSold,
-                                               [Price] = @Price,
-                                               [Buyer] = @Buyer,                                                  
+                                               [Price] = @Price,                                             
                                                [Remark] = @Remark,
                                                [ModifyDate] = @ModifyDate
                                                WHERE 
-                                               TextileID=@TextileID", TextileData);
+                                               TextileID= @TextileID", data);
             }
             return result;
         }

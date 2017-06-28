@@ -137,5 +137,11 @@ namespace Hungyi.Core.Textile
             var successCount = TextileDao.UpdateTextile(TextileList);
             return successCount == TextileList.Count();
         }
+
+        public bool UpdateTextileIsSold(IEnumerable<TextileEntity> textileID, int customerID)
+        {
+            var successCount = TextileDao.UpdateSoldTextile(textileID);
+            return successCount == textileID.Count();
+        }
     }
 }

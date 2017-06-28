@@ -39,6 +39,8 @@ namespace Hungyi.Core.Textile
         /// <param name="TextileList">The textile list.</param>
         /// <returns></returns>
         bool UpdateTextile(IEnumerable<TextileEntity> TextileList);
+        bool UpdateTextileIsSold(IEnumerable<TextileEntity> textileID, int customerID);
+
         /// <summary>
         /// Gets the textile by list identifier.
         /// </summary>
