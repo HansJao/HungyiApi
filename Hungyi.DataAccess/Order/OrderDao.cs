@@ -34,7 +34,7 @@ namespace Hungyi.DataAccess.Order
                 var data = new
                 {
                     CustomerID = shipmentInfo.CustomerID,
-                    UserID = 2,
+                    UserID = shipmentInfo.UserID,
                     TotalPrice = textileList.Sum(s => s.Price),
                     TotalCost = textileList.Sum(s => s.Cost),
                     TotalQuantity = textileList.Count(),
@@ -60,12 +60,12 @@ namespace Hungyi.DataAccess.Order
             return orderID;
         }
 
-        public int CreateOrderDetail(ShipmentInfo shipmentInfo,int orderID)
+        public int CreateOrderDetail(ShipmentInfo shipmentInfo, int orderID)
         {
             var result = 0;
             using (IDbConnection dbCnnection = Connection)
             {
-                var data = shipmentInfo.Textile.ToList().Select(s=>new 
+                var data = shipmentInfo.Textile.ToList().Select(s => new
                 {
                     OrderID = orderID,
                     TextileID = s.TextileID,
@@ -86,6 +86,40 @@ namespace Hungyi.DataAccess.Order
                                                                @Status,
                                                                @CreateDate,
                                                                @ModifyDate)", data);
+            }
+            return result;
+        }
+
+        public List<OrderEntity> GetOrder(int customerID)
+        {
+            var result = new List<OrderEntity>();
+            using (IDbConnection dbCnnection = Connection)
+            {
+                var data = new
+                {
+                    CustomerID = customerID
+                };
+                dbCnnection.Open();
+                result = dbCnnection.Query<OrderEntity>(@"SELECT O.*,U.UserName FROM [dbo].[Order] O
+                                                          LEFT JOIN [dbo].[User] U ON U.UserID = O.UserID
+                                                          WHERE O.CustomerID = @CustomerID", data).ToList();
+            }
+            return result;
+        }
+
+        public List<OrderDetailInfo> GetOrderDetailByOrderID(int orderID)
+        {
+            var result = new List<OrderDetailInfo>();
+            using (IDbConnection dbCnnection = Connection)
+            {
+                var data = new
+                {
+                    OrderID = orderID
+                };
+                dbCnnection.Open();
+                result = dbCnnection.Query<OrderDetailInfo>(@"SELECT OD.Status,OD.ModifyDate,T.TextileName,T.TextileColor,T.Cost,T.Weight,T.Price FROM [dbo].OrderDetail OD
+                                                              INNER JOIN [dbo].[Textile] T ON T.TextileID = OD.TextileID
+                                                              WHERE OrderID = @OrderID", data).ToList();
             }
             return result;
         }

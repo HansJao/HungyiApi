@@ -57,5 +57,15 @@ namespace Hungyi.Core.Order
             int successCount = OrderDao.CreateOrderDetail(shipmentInfo,orderID);
             return orderID;
         }
+
+        public List<OrderEntity> GetOrder(int customerID)
+        {
+            return OrderDao.GetOrder(customerID);
+        }
+
+        public List<OrderDetailInfo> GetOrderDetailByOrderID(int orderID)
+        {
+            return OrderDao.GetOrderDetailByOrderID(orderID);
+        }
     }
 }

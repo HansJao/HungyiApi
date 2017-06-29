@@ -7,12 +7,12 @@ using Hungyi.DataClass.Order;
 using Microsoft.Extensions.Configuration;
 using Hungyi.Core.Order;
 using Hungyi.Core.Textile;
+using Hungyi.DataClass.Request;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Hungyi.WebApi.Controllers
 {
-    [Route("[controller]")]
     public class OrderController : Controller
     {
         private readonly IOrderModule _orderModule;
@@ -37,17 +37,29 @@ namespace Hungyi.WebApi.Controllers
         }
 
         // POST api/values
-        [Route("SendShipmentInfo")]
         [HttpPost]
-        public void Post([FromBody]ShipmentInfo shipmentInfo)
+        public int SendShipmentInfo([FromBody]ShipmentInfo shipmentInfo)
         {
             bool success = false;
+            int orderID = 0;
             success = _textieModule.UpdateTextileIsSold(shipmentInfo.Textile, shipmentInfo.CustomerID);
             if(success)
             {
-                int orderID = _orderModule.CreateOrder(shipmentInfo);
+                orderID = _orderModule.CreateOrder(shipmentInfo);
             }
-            //_orderModule.SendShipmentInfo(shipmentInfo);
+            return orderID;//_orderModule.SendShipmentInfo(shipmentInfo);
+        }
+        [HttpPost]
+        public List<OrderEntity> GetOrder([FromBody] int request)
+        {
+            return _orderModule.GetOrder(request);
+        }
+
+        [HttpPost]
+        public List<OrderDetailInfo> GetOrderDetailByOrderID([FromBody]int orderID)
+        {
+            return _orderModule.GetOrderDetailByOrderID(orderID);
+            
         }
 
         // PUT api/values/5

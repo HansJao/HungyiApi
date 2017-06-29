@@ -8,6 +8,7 @@ namespace Hungyi.DataClass.Order
     public class ShipmentInfo
     {
         public int CustomerID { get; set; }
+        public int UserID { get; set; }
         public IEnumerable<TextileEntity> Textile { get; set; }
     }
 }

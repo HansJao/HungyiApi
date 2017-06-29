@@ -68,7 +68,8 @@ namespace Hungyi.WebApi.Controllers
             {
                 return null;
             }
-            return _textileModule.GetTextileByListProductID(productID);
+            var result = _textileModule.GetTextileByListProductID(productID).Where(w => w.IsSold == false);
+            return result;
         }
         // POST api/values
         [HttpPost]
