@@ -18,6 +18,7 @@ namespace Hungyi.WebApi
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
+                .UseUrls("http://localhost:49247")
                 .Build();
 
             host.Run();
