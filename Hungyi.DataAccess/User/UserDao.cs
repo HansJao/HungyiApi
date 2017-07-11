@@ -14,7 +14,7 @@ namespace Hungyi.DataAccess.User
         public UserDao(string connectionString)
         {
             _connectionString = connectionString;
-        }
+        }//test
 
         internal IDbConnection Connection
         {
