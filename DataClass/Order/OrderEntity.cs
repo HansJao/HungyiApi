@@ -9,7 +9,6 @@ namespace Hungyi.DataClass.Order
         public int OrderID { get; set; }
         public int CustomerID { get; set; }
         public int UserID { get; set; }
-        public string UserName { get; set; }
         public int TotalPrice { get; set; }
         public int TotalCost { get; set; }
         public int TotalQuantity { get; set; }

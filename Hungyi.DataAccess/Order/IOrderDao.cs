@@ -7,7 +7,7 @@ namespace Hungyi.DataAccess.Order
 {
     public interface IOrderDao
     {
-        int CreateOrder(ShipmentInfo shipmentInfo);
+        int CreateOrder(OrderEntity orderEntity);
         int CreateOrderDetail(ShipmentInfo shipmentInfo, int orderID);
         List<OrderEntity> GetOrder(int customerID);
         List<OrderDetailInfo> GetOrderDetailByOrderID(int orderID);

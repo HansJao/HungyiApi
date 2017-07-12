@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Hungyi.DataAccess.Textile;
 using Hungyi.DataAccess.Order;
 using Hungyi.DataClass.Order;
+using System.Linq;
 
 namespace Hungyi.Core.Order
 {
@@ -53,8 +54,17 @@ namespace Hungyi.Core.Order
 
         public int CreateOrder(ShipmentInfo shipmentInfo)
         {
-            int orderID = OrderDao.CreateOrder(shipmentInfo);
-            int successCount = OrderDao.CreateOrderDetail(shipmentInfo,orderID);
+            var orderEntity = new OrderEntity()
+            {
+                CustomerID = shipmentInfo.CustomerID,
+                UserID = shipmentInfo.UserID,
+                TotalPrice = Convert.ToInt32(shipmentInfo.Textile.Select(s => new { price = s.Price, weight = s.Weight }).Sum(s => s.price * s.weight)),
+                TotalCost = Convert.ToInt32(shipmentInfo.Textile.Select(s => new { cost = s.Cost, weight = s.Weight }).Sum(s => s.cost * s.weight)),
+                TotalQuantity = shipmentInfo.Textile.Count(),
+                CreateDate = DateTime.Now
+            };
+            int orderID = OrderDao.CreateOrder(orderEntity);
+            int successCount = OrderDao.CreateOrderDetail(shipmentInfo, orderID);
             return orderID;
         }
 

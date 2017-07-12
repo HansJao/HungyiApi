@@ -25,21 +25,21 @@ namespace Hungyi.DataAccess.Order
             }
         }
 
-        public int CreateOrder(ShipmentInfo shipmentInfo)
+        public int CreateOrder(OrderEntity orderEntity)
         {
             int orderID = 0;
             using (IDbConnection dbCnnection = Connection)
             {
-                var textileList = shipmentInfo.Textile.ToList();
-                var data = new
-                {
-                    CustomerID = shipmentInfo.CustomerID,
-                    UserID = shipmentInfo.UserID,
-                    TotalPrice = textileList.Sum(s => s.Price),
-                    TotalCost = textileList.Sum(s => s.Cost),
-                    TotalQuantity = textileList.Count(),
-                    CreateDate = DateTime.Now
-                };
+                // var textileList = orderEntity.Textile.ToList();
+                // var data = new
+                // {
+                //     CustomerID = orderEntity.CustomerID,
+                //     UserID = orderEntity.UserID,
+                //     TotalPrice = textileList.Sum(s => s.Price),
+                //     TotalCost = textileList.Sum(s => s.Cost),
+                //     TotalQuantity = textileList.Count(),
+                //     CreateDate = DateTime.Now
+                // };
                 dbCnnection.Open();
                 orderID = dbCnnection.QueryFirst<int>(@"INSERT INTO [dbo].[Order]
                                                                ([CustomerID]
@@ -55,7 +55,7 @@ namespace Hungyi.DataAccess.Order
                                                                @TotalCost,
                                                                @TotalQuantity,
                                                                @CreateDate);
-                                                               SELECT CAST(SCOPE_IDENTITY() as int)", data);
+                                                               SELECT CAST(SCOPE_IDENTITY() as int)", orderEntity);
             }
             return orderID;
         }
