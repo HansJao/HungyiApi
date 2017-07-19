@@ -40,6 +40,10 @@ namespace Hungyi.WebApi.Controllers
         [HttpPost]
         public int SendShipmentInfo([FromBody]ShipmentInfo shipmentInfo)
         {
+            if (shipmentInfo.Textile.Count() == 0)
+            {
+                return 0;
+            }
             bool success = false;
             int orderID = 0;
             success = _textieModule.UpdateTextileIsSold(shipmentInfo.Textile, shipmentInfo.CustomerID);
